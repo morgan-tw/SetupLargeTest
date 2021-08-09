@@ -14,16 +14,8 @@ namespace Tests
 
     [TestFixture]
     [Parallelizable(scope: ParallelScope.All)]
-    public class TTest
+    public class NunitNotThreadSafeTests
     {
-        private AClass testable;
-
-        [SetUp]
-        public void Setup()
-        {
-            testable = new AClass(0);
-        }
-
         [TestCase(1)]
         [TestCase(2)]
         [TestCase(3)]
@@ -44,7 +36,7 @@ namespace Tests
         [TestCase(18)]
         public void ShouldBeSameNumber0(int number)
         {
-            testable.value = number;
+            var testable = new AClass(number);
             Assert.That(testable.value, Is.EqualTo(number));
         }
 
@@ -68,7 +60,7 @@ namespace Tests
         [TestCase(18)]
         public void ShouldBeSameNumber1(int number)
         {
-            testable.value = number;
+            var testable = new AClass(number);
             Assert.That(testable.value, Is.EqualTo(number));
         }
 
@@ -92,7 +84,7 @@ namespace Tests
         [TestCase(18)]
         public void ShouldBeSameNumber2(int number)
         {
-            testable.value = number;
+            var testable = new AClass(number);
             Assert.That(testable.value, Is.EqualTo(number));
         }
     }
