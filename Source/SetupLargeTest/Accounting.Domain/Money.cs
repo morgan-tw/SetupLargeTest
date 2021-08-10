@@ -8,7 +8,15 @@ namespace Accounting.Domain
             Currency = currency;
         }
         
-        public int Amount { get; set; }
-        public string Currency { get; set; }
+        public int Amount { get; }
+        public string Currency { get; }
+
+        public Money Add(Money other)
+        {
+            return new Money(Amount + other.Amount);
+        }
+        
+        public static Money operator +(Money left, Money right)
+            => left.Add(right);
     }
 }

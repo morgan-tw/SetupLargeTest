@@ -26,11 +26,23 @@ namespace Accounting.Tests
         [TestCase(18)]
         [TestCase(19)]
         [TestCase(20)]
-        public void ShouldSetAmount(int amount)
+        public void Should_set_amount(int amount)
         {
             Scenario.Create().
-                Given.AMoneyWithAmount(amount).
-                Then.ItsAmountShouldBe(amount);
+                Given.AMoneyWithAmount("My money", amount).
+                Then.ItsAmountShouldBe("My money", amount);
+        }
+        
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        public void Sum_with_zero_should_not_change_amount(int amount)
+        {
+            Scenario.Create().
+                Given.AMoneyWithAmount("Zero", 0).
+                And.AMoneyWithAmount("Money", amount).
+                When.WeAddTheMoneys("Zero", "Money").
+                Then.TheResultShouldBe(amount);
         }
     }
 }
