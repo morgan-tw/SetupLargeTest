@@ -7,12 +7,12 @@ namespace Accounting.Tests
 {
     public class Scenario
     {
-        public List<Money> items;
+        public Dictionary<string, Money> items;
         public Money result;
 
         private Scenario()
         {
-            items = new List<Money>();
+            items = new Dictionary<string, Money>();
         }
 
         public static Scenario Create()
@@ -26,21 +26,21 @@ namespace Accounting.Tests
         public Scenario And => this;
         public Scenario But => this;
 
-        public Scenario AMoneyWithAmount(int amount)
+        public Scenario AMoneyWithAmount(string humanReadableKey, int amount)
         {
-            items.Add(new Money(amount));
+            items.Add(humanReadableKey, new Money(amount));
             return this;
         }
 
-        public Scenario ItsAmountShouldBe(int expectedAmount)
+        public Scenario ItsAmountShouldBe(string key,int expectedAmount)
         {
-            Assert.That(items[0].Amount, Is.EqualTo(expectedAmount));
+            Assert.That(items[key].Amount, Is.EqualTo(expectedAmount));
             return this;
         }
 
-        public Scenario WeAddTheMoneys(int leftMoneyIndex, int rightMoneyIndex)
+        public Scenario WeAddTheMoneys(string leftKey, string rightKey)
         {
-            result = items.ElementAt(leftMoneyIndex) + items.ElementAt(rightMoneyIndex);
+            result = items[leftKey] + items[rightKey];
             return this;
         }
 

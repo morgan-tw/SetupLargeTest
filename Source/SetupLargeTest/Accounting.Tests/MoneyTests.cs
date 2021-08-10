@@ -31,8 +31,8 @@ namespace Accounting.Tests
         public void Should_set_amount(int amount)
         {
             Scenario.Create().
-                Given.AMoneyWithAmount(amount).
-                Then.ItsAmountShouldBe(amount);
+                Given.AMoneyWithAmount("My money", amount).
+                Then.ItsAmountShouldBe("My money", amount);
         }
         
         [TestCase(1)]
@@ -41,9 +41,9 @@ namespace Accounting.Tests
         public void Sum_with_zero_should_not_change_amount(int amount)
         {
             var scenario = Scenario.Create().
-                Given.AMoneyWithAmount(0).
-                And.AMoneyWithAmount(amount).
-                When.WeAddTheMoneys(0, 1).
+                Given.AMoneyWithAmount("Zero", 0).
+                And.AMoneyWithAmount("Money", amount).
+                When.WeAddTheMoneys("Zero", "Money").
                 Then.TheResultShouldBe(amount);
         }
     }
