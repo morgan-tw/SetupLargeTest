@@ -1,5 +1,3 @@
-using System.Linq;
-using Accounting.Domain;
 using NUnit.Framework;
 
 namespace Accounting.Tests
@@ -40,7 +38,7 @@ namespace Accounting.Tests
         [TestCase(3)]
         public void Sum_with_zero_should_not_change_amount(int amount)
         {
-            var scenario = Scenario.Create().
+            Scenario.Create().
                 Given.AMoneyWithAmount("Zero", 0).
                 And.AMoneyWithAmount("Money", amount).
                 When.WeAddTheMoneys("Zero", "Money").

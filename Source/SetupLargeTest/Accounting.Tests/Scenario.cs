@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Accounting.Domain;
 using NUnit.Framework;
 
@@ -7,8 +6,8 @@ namespace Accounting.Tests
 {
     public class Scenario
     {
-        public Dictionary<string, Money> items;
-        public Money result;
+        private readonly Dictionary<string, Money> items;
+        private Money result;
 
         private Scenario()
         {
@@ -26,21 +25,26 @@ namespace Accounting.Tests
         public Scenario And => this;
         public Scenario But => this;
 
+        #region Given
         public Scenario AMoneyWithAmount(string humanReadableKey, int amount)
         {
             items.Add(humanReadableKey, new Money(amount));
             return this;
         }
+        #endregion
 
-        public Scenario ItsAmountShouldBe(string key,int expectedAmount)
-        {
-            Assert.That(items[key].Amount, Is.EqualTo(expectedAmount));
-            return this;
-        }
-
+        #region When
         public Scenario WeAddTheMoneys(string leftKey, string rightKey)
         {
             result = items[leftKey] + items[rightKey];
+            return this;
+        }
+        #endregion
+
+        #region Then
+        public Scenario ItsAmountShouldBe(string key,int expectedAmount)
+        {
+            Assert.That(items[key].Amount, Is.EqualTo(expectedAmount));
             return this;
         }
 
@@ -49,5 +53,6 @@ namespace Accounting.Tests
             Assert.That(result.Amount, Is.EqualTo(expectedAmount));
             return this;
         }
+        #endregion
     }
 }
