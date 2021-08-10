@@ -53,9 +53,10 @@ namespace Accounting.Tests
         {
             var scenario = Scenario.Create().
                 Given.TheChangeRateFromToIs("AUD", "BTH", 2).
-                And.AMoneyWithAmount("tenBath", 10, "BTH");
+                And.AMoneyWithAmount("tenBath", 10, "BTH").
+                And.AMoneyWithAmount("tenDollars", 10, "AUD");
             var tenBath = scenario.items["tenBath"];
-            var tenDollars = new Money(10, "AUD");
+            var tenDollars = scenario.items["tenDollars"];
 
             var result = tenBath.AddUsing(tenDollars, scenario.currencyConverterMock.Object);
             
