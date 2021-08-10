@@ -40,9 +40,8 @@ namespace Accounting.Tests
         [TestCase(3)]
         public void Sum_with_zero_should_not_change_amount(decimal amount)
         {
-            var scenario = Scenario.Create();
-            
-            scenario.currencyConverterMock.Setup(x => x.GetChangeRate("BTH", "BTH")).Returns(1);
+            var scenario = Scenario.Create().
+                    Given.TheChangeRateFromToIs("BTH", "BTH", 1);
             
             scenario.
                 Given.AMoneyWithAmount("Zero", 0).
@@ -54,13 +53,13 @@ namespace Accounting.Tests
         [Test]
         public void Sum_with_different_currency_should_apply_the_change_rate()
         {
-            var currencyConverterMock = Scenario.Create().currencyConverterMock;
-            currencyConverterMock.Setup(x => x.GetChangeRate("AUD", "BTH")).Returns(2);
+            var scenario = Scenario.Create().
+                Given.TheChangeRateFromToIs("AUD", "BTH", 2);
             
             var tenBath = new Money(10, "BTH");
             var tenDollars = new Money(10, "AUD");
 
-            var result = tenBath.AddUsing(tenDollars, currencyConverterMock.Object);
+            var result = tenBath.AddUsing(tenDollars, scenario.currencyConverterMock.Object);
             
             Assert.That(result.Amount, Is.EqualTo(30));
             Assert.That(result.Currency, Is.EqualTo("BTH"));

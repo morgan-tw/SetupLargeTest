@@ -58,5 +58,11 @@ namespace Accounting.Tests
             return this;
         }
         #endregion
+
+        public Scenario TheChangeRateFromToIs(string currencyFrom, string currencyTo, decimal changeRate)
+        {
+            currencyConverterMock.Setup(x => x.GetChangeRate(currencyFrom, currencyTo)).Returns(changeRate);
+            return this;
+        }
     }
 }
