@@ -7,14 +7,6 @@ namespace Accounting.Tests
     [Parallelizable(scope: ParallelScope.All)]
     public class MoneyTests
     {
-        private Money testable;
-
-        [SetUp]
-        public void Setup()
-        {
-            testable = new Money(0, "BTH");
-        }
-
         [TestCase(1)]
         [TestCase(2)]
         [TestCase(3)]
@@ -37,7 +29,7 @@ namespace Accounting.Tests
         [TestCase(20)]
         public void ShouldSetAmount(int amount)
         {
-            testable.Amount = amount;
+            var testable = new Money(amount);
             Assert.That(testable.Amount, Is.EqualTo(amount));
         }
 
@@ -61,10 +53,10 @@ namespace Accounting.Tests
         [TestCase(18)]
         [TestCase(19)]
         [TestCase(20)]
-        public void ShouldSetAmount2(int number)
+        public void ShouldSetAmount2(int amount)
         {
-            testable.Amount = number;
-            Assert.That(testable.Amount, Is.EqualTo(number));
+            var testable = new Money(amount);
+            Assert.That(testable.Amount, Is.EqualTo(amount));
         }
 
         [TestCase(1)]
@@ -87,10 +79,10 @@ namespace Accounting.Tests
         [TestCase(18)]
         [TestCase(19)]
         [TestCase(20)]
-        public void ShouldSetAmount3(int number)
+        public void ShouldSetAmount3(int amount)
         {
-            testable.Amount = number;
-            Assert.That(testable.Amount, Is.EqualTo(number));
+            var testable = new Money(amount);
+            Assert.That(testable.Amount, Is.EqualTo(amount));
         }
     }
 }
