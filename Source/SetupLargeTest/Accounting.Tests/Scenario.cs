@@ -29,6 +29,12 @@ namespace Accounting.Tests
         public Scenario But => this;
 
         #region Given
+        public Scenario AMoneyWithAmount(decimal amount, string currency = "BTH")
+        {
+            moneyContext.Add(new Money(amount, currency));
+            return this;
+        }
+        
         public Scenario AMoneyWithAmount(string humanReadableKey, decimal amount, string currency = "BTH")
         {
             moneyContext.Add(humanReadableKey, new Money(amount, currency));
@@ -45,9 +51,9 @@ namespace Accounting.Tests
         #endregion
 
         #region Then
-        public Scenario ItsAmountShouldBe(string key,decimal expectedAmount)
+        public Scenario ItsAmountShouldBe(decimal expectedAmount)
         {
-            Assert.That(moneyContext.Get(key).Amount, Is.EqualTo(expectedAmount));
+            Assert.That(moneyContext.Get().Amount, Is.EqualTo(expectedAmount));
             return this;
         }
 

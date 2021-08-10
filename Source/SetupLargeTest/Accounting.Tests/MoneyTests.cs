@@ -31,8 +31,8 @@ namespace Accounting.Tests
         public void Should_set_amount(decimal amount)
         {
             Scenario.Create().
-                Given.AMoneyWithAmount("My money", amount).
-                Then.ItsAmountShouldBe("My money", amount);
+                Given.AMoneyWithAmount(amount).
+                Then.ItsAmountShouldBe(amount);
         }
         
         [TestCase(1)]
