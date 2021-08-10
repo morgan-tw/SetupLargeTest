@@ -34,6 +34,18 @@ namespace Accounting.Tests
             moneyContext.Add(new Money(amount, currency));
             return this;
         }
+
+        public Scenario AMoneyHasForAmount(decimal amount)
+        {
+            moneyContext.Add(new Money(amount, "BTH"));
+            return this;
+        }
+
+        public Scenario ThisMoneyHasForCurrency(string currency)
+        {
+            moneyContext.Get().Currency = currency;
+            return this;
+        }
         
         public Scenario TheMoney(string humanReadableKey, decimal amount, string currency)
         {
@@ -54,6 +66,12 @@ namespace Accounting.Tests
         public Scenario ItsAmountShouldBe(decimal expectedAmount)
         {
             Assert.That(moneyContext.Get().Amount, Is.EqualTo(expectedAmount));
+            return this;
+        }
+        
+        public Scenario ItsCurrencyShouldBe(string expectedCurrency)
+        {
+            Assert.That(moneyContext.Get().Currency, Is.EqualTo(expectedCurrency));
             return this;
         }
 

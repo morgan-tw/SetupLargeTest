@@ -8,8 +8,8 @@ namespace Accounting.Domain
             Currency = currency;
         }
         
-        public decimal Amount { get; }
-        public string Currency { get; }
+        public decimal Amount { get; set; }
+        public string Currency { get; set; }
 
         public Money AddUsing(Money other, ICurrencyConverter currencyConverter)
         {
