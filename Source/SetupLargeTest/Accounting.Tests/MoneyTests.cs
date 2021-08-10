@@ -30,8 +30,8 @@ namespace Accounting.Tests
         public void ShouldSetAmount(int amount)
         {
             var scenario = new Scenario();
-            var testable = new Money(amount);
-            Assert.That(testable.Amount, Is.EqualTo(amount));
+            scenario.testable = new Money(amount);
+            Assert.That(scenario.testable.Amount, Is.EqualTo(amount));
         }
     }
 }
