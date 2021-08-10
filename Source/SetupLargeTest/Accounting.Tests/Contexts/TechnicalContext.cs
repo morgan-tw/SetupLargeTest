@@ -1,14 +1,17 @@
 using Accounting.Domain;
+using Accounting.Tests.Fakes;
 using Moq;
 
 namespace Accounting.Tests.Contexts
 {
     public class TechnicalContext
     {
+        private ModuleAccountingFake moduleMoney;
         private Mock<ICurrencyConverter> currencyConverterMock;
 
         public TechnicalContext(ChangeRateContext changeRateContext)
         {
+            moduleMoney = new ModuleAccountingFake();
             SetUpCurrencyConverter(changeRateContext);
         }
 
