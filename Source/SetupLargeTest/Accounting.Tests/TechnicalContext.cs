@@ -13,14 +13,16 @@ namespace Accounting.Tests
         {
             this.changeRateContext = changeRateContext;
             currencyConverterMock = new Mock<ICurrencyConverter>();
+            
+            SetUpCurrencyConverter();
         }
 
         public ICurrencyConverter CurrencyConverter => currencyConverterMock.Object;
-        
-        public void TheChangeRateFromToIs(string currencyFrom, string currencyTo)
+
+        private void SetUpCurrencyConverter()
         {
-            currencyConverterMock.Setup(x => x.GetChangeRate(currencyFrom, currencyTo))
-                .Returns((string from, string to) => changeRateContext.Get(from, to));
+            currencyConverterMock.Setup(x => x.GetChangeRate(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns((string currencyFrom, string currencyTo) => changeRateContext.Get(currencyFrom, currencyTo));
         }
     }
 }

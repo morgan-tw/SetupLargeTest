@@ -29,7 +29,6 @@ namespace Accounting.Tests
         public Scenario TheChangeRateFromToIs(string currencyFrom, string currencyTo, decimal changeRate)
         {
             changeRateContext.Add(currencyFrom, currencyTo, changeRate);
-            technicalContext.TheChangeRateFromToIs(currencyFrom, currencyTo);
             return this;
         }
         #endregion
