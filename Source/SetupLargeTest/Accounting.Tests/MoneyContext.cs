@@ -26,6 +26,16 @@ namespace Accounting.Tests
             return items.First();
         }
 
+        public Money EnsureTheMoneyExist(string key)
+        {
+            if (!itemsPerKey.ContainsKey(key))
+            {
+                Add(key, new Money(0, "BTH"));
+            }
+
+            return itemsPerKey[key];
+        }
+
         public void Add(Money item)
         {
            items.Add(item);

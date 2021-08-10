@@ -1,5 +1,3 @@
-using Accounting.Domain;
-using Moq;
 using NUnit.Framework;
 
 namespace Accounting.Tests
