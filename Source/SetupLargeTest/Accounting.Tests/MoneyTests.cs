@@ -40,22 +40,21 @@ namespace Accounting.Tests
         [TestCase(3)]
         public void Sum_with_zero_should_not_change_amount(decimal amount)
         {
-            var currencyConverterMock = new Mock<ICurrencyConverter>();
-
-            currencyConverterMock.Setup(x => x.GetChangeRate("BTH", "BTH")).Returns(1);
+            var scenario = Scenario.Create();
             
-            Scenario.Create().
+            scenario.currencyConverterMock.Setup(x => x.GetChangeRate("BTH", "BTH")).Returns(1);
+            
+            scenario.
                 Given.AMoneyWithAmount("Zero", 0).
                 And.AMoneyWithAmount("Money", amount).
-                When.WeAddTheMoneysUsing("Zero", "Money", currencyConverterMock.Object).
+                When.WeAddTheMoneysUsing("Zero", "Money", scenario.currencyConverterMock.Object).
                 Then.TheResultShouldBe(amount);
         }
         
         [Test]
         public void Sum_with_different_currency_should_apply_the_change_rate()
         {
-            var currencyConverterMock = new Mock<ICurrencyConverter>();
-
+            var currencyConverterMock = Scenario.Create().currencyConverterMock;
             currencyConverterMock.Setup(x => x.GetChangeRate("AUD", "BTH")).Returns(2);
             
             var tenBath = new Money(10, "BTH");

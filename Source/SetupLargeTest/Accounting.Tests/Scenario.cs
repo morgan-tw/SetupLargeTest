@@ -1,17 +1,21 @@
 using System.Collections.Generic;
 using Accounting.Domain;
+using Moq;
 using NUnit.Framework;
 
 namespace Accounting.Tests
 {
     public class Scenario
     {
+        public readonly Mock<ICurrencyConverter> currencyConverterMock;
+        
         private readonly Dictionary<string, Money> items;
         private Money result;
 
         private Scenario()
         {
             items = new Dictionary<string, Money>();
+            currencyConverterMock = new Mock<ICurrencyConverter>();
         }
 
         public static Scenario Create()
