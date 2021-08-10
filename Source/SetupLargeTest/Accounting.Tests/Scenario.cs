@@ -5,8 +5,15 @@ namespace Accounting.Tests
 {
     public class Scenario
     {
-        public Money testable;
+        private Money testable;
 
+        private Scenario() {}
+
+        public static Scenario Create()
+        {
+            return new Scenario();
+        }
+        
         public Scenario Given => this;
         public Scenario When => this;
         public Scenario Then => this;

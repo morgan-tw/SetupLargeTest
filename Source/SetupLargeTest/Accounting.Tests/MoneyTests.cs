@@ -28,7 +28,7 @@ namespace Accounting.Tests
         [TestCase(20)]
         public void ShouldSetAmount(int amount)
         {
-            new Scenario().
+            Scenario.Create().
                 Given.AMoneyWithAmount(amount).
                 Then.ItsAmountShouldBe(amount);
         }
