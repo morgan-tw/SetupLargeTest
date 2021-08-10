@@ -1,22 +1,22 @@
 namespace Accounting.Domain
 {
     public class Money
-    {
-        public Money(int amount, string currency = "USD")
+    {        
+        public Money(decimal amount, string currency = "BTH")
         {
             Amount = amount;
             Currency = currency;
         }
         
-        public int Amount { get; }
+        public decimal Amount { get; }
         public string Currency { get; }
 
-        public Money Add(Money other)
+        public Money AddUsing(Money other, ICurrencyConverter currencyConverter)
         {
-            return new Money(Amount + other.Amount);
+            var changeRate = currencyConverter.GetChangeRate(other.Currency, Currency);
+
+            var money = new Money(Amount + other.Amount * changeRate, Currency);
+            return money;
         }
-        
-        public static Money operator +(Money left, Money right)
-            => left.Add(right);
     }
 }
