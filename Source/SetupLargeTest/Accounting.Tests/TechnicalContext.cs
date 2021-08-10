@@ -20,7 +20,8 @@ namespace Accounting.Tests
         public void TheChangeRateFromToIs(string currencyFrom, string currencyTo, decimal changeRate)
         {
             changeRateContext.Add(currencyFrom, currencyTo, changeRate);
-            currencyConverterMock.Setup(x => x.GetChangeRate(currencyFrom, currencyTo)).Returns(changeRate);
+            currencyConverterMock.Setup(x => x.GetChangeRate(currencyFrom, currencyTo)).Returns(
+                (string from, string to) => changeRateContext.Get(from, to));
         }
     }
 }

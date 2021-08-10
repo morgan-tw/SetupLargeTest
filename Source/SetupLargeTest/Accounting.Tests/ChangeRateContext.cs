@@ -32,5 +32,10 @@ namespace Accounting.Tests
                 changeRates.Add(currencyFrom, new Dictionary<string, decimal>());
             }
         }
+
+        public decimal Get(string currencyFrom, string currencyTo)
+        {
+            return changeRates[currencyFrom][currencyTo];
+        }
     }
 }
