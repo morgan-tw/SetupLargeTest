@@ -36,14 +36,14 @@ namespace Accounting.Tests
             return itemsPerKey[key];
         }
 
-        public void Add(Money item)
+        private void Add(Money item)
         {
            items.Add(item);
         }
-        
-        public void Add(string key, Money item)
+
+        private void Add(string key, Money item)
         {
-            items.Add(item);
+            Add(item);
             itemsPerKey.Add(key, item);
         }
     }

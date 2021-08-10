@@ -8,7 +8,7 @@ namespace Accounting.Tests
     {
         private readonly Mock<ICurrencyConverter> currencyConverterMock;
 
-        private MoneyContext moneyContext; 
+        private readonly MoneyContext moneyContext; 
         private Money result;
 
         private Scenario()
@@ -31,7 +31,9 @@ namespace Accounting.Tests
         #region Given
         public Scenario AMoney(decimal amount, string currency)
         {
-            moneyContext.Add(new Money(amount, currency));
+            var money = moneyContext.EnsureAMoneyExist();
+            money.Amount = amount;
+            money.Currency = currency;
             return this;
         }
 
