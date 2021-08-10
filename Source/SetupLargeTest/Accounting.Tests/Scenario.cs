@@ -5,11 +5,13 @@ namespace Accounting.Tests
 {
     public partial class Scenario
     {
+        private readonly TechnicalContext technicalContext;
         private readonly Mock<ICurrencyConverter> currencyConverterMock;
 
         private Scenario()
         {
             moneyContext = new MoneyContext();
+            technicalContext = new TechnicalContext();
             currencyConverterMock = new Mock<ICurrencyConverter>();
         }
 
