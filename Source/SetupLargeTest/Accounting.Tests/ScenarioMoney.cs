@@ -1,4 +1,5 @@
 using Accounting.Domain;
+using Accounting.Tests.Contexts;
 using NUnit.Framework;
 
 namespace Accounting.Tests

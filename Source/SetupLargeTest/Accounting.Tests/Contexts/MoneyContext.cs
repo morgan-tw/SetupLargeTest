@@ -3,7 +3,7 @@ using System.Linq;
 using Accounting.Domain;
 using Castle.Core.Internal;
 
-namespace Accounting.Tests
+namespace Accounting.Tests.Contexts
 {
     public class MoneyContext
     {

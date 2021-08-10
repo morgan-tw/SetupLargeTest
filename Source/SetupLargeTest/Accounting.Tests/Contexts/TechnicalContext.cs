@@ -1,7 +1,7 @@
 using Accounting.Domain;
 using Moq;
 
-namespace Accounting.Tests
+namespace Accounting.Tests.Contexts
 {
     public class TechnicalContext
     {

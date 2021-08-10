@@ -1,3 +1,5 @@
+using Accounting.Tests.Contexts;
+
 namespace Accounting.Tests
 {
     public partial class Scenario
