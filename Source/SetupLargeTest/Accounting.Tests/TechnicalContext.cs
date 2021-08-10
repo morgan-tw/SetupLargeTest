@@ -9,19 +9,18 @@ namespace Accounting.Tests
         
         private readonly Mock<ICurrencyConverter> currencyConverterMock;
 
-        public TechnicalContext()
+        public TechnicalContext(ChangeRateContext changeRateContext)
         {
-            changeRateContext = new ChangeRateContext();
+            this.changeRateContext = changeRateContext;
             currencyConverterMock = new Mock<ICurrencyConverter>();
         }
 
         public ICurrencyConverter CurrencyConverter => currencyConverterMock.Object;
         
-        public void TheChangeRateFromToIs(string currencyFrom, string currencyTo, decimal changeRate)
+        public void TheChangeRateFromToIs(string currencyFrom, string currencyTo)
         {
-            changeRateContext.Add(currencyFrom, currencyTo, changeRate);
-            currencyConverterMock.Setup(x => x.GetChangeRate(currencyFrom, currencyTo)).Returns(
-                (string from, string to) => changeRateContext.Get(from, to));
+            currencyConverterMock.Setup(x => x.GetChangeRate(currencyFrom, currencyTo))
+                .Returns((string from, string to) => changeRateContext.Get(from, to));
         }
     }
 }
