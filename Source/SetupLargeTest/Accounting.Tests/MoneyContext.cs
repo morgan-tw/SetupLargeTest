@@ -20,7 +20,7 @@ namespace Accounting.Tests
         {
             if (items.IsNullOrEmpty())
             {
-                Add(new Money(0, "BTH"));
+                Add(MoneyFactory.CreateDefaultMoney());
             }
 
             return items.First();
@@ -30,7 +30,7 @@ namespace Accounting.Tests
         {
             if (!itemsPerKey.ContainsKey(key))
             {
-                Add(key, new Money(0, "BTH"));
+                Add(key, MoneyFactory.CreateDefaultMoney());
             }
 
             return itemsPerKey[key];
@@ -45,6 +45,14 @@ namespace Accounting.Tests
         {
             Add(item);
             itemsPerKey.Add(key, item);
+        }
+
+        private class MoneyFactory
+        {
+            public static Money CreateDefaultMoney()
+            {
+                return new Money(0, "BTH");
+            }
         }
     }
 }
