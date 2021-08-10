@@ -91,13 +91,13 @@ namespace Accounting.Tests
         #region Then
         public Scenario ItsAmountShouldBe(decimal expectedAmount)
         {
-            Assert.That(moneyContext.Get().Amount, Is.EqualTo(expectedAmount));
+            Assert.That(moneyContext.EnsureAMoneyExist().Amount, Is.EqualTo(expectedAmount));
             return this;
         }
         
         public Scenario ItsCurrencyShouldBe(string expectedCurrency)
         {
-            Assert.That(moneyContext.Get().Currency, Is.EqualTo(expectedCurrency));
+            Assert.That(moneyContext.EnsureAMoneyExist().Currency, Is.EqualTo(expectedCurrency));
             return this;
         }
 
