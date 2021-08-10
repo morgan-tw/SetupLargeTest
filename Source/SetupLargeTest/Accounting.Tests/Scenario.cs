@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Accounting.Domain;
 using NUnit.Framework;
 
@@ -5,9 +6,12 @@ namespace Accounting.Tests
 {
     public class Scenario
     {
-        private Money testable;
+        private List<Money> items;
 
-        private Scenario() {}
+        private Scenario()
+        {
+            items = new List<Money>();
+        }
 
         public static Scenario Create()
         {
@@ -22,13 +26,13 @@ namespace Accounting.Tests
 
         public Scenario AMoneyWithAmount(int amount)
         {
-            testable = new Money(amount);
+            items.Add(new Money(amount));
             return this;
         }
 
         public Scenario ItsAmountShouldBe(int expectedAmount)
         {
-            Assert.That(testable.Amount, Is.EqualTo(expectedAmount));
+            Assert.That(items[0].Amount, Is.EqualTo(expectedAmount));
             return this;
         }
     }
