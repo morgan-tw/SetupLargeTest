@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Accounting;
 using Accounting.Domain;
 using Ninject;
 using Ninject.Modules;

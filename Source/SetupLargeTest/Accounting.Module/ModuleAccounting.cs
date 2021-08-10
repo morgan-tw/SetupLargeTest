@@ -1,6 +1,7 @@
+using Accounting.Domain;
 using Ninject.Modules;
 
-namespace Accounting.Domain
+namespace Accounting
 {
     public class ModuleAccounting: NinjectModule
     {

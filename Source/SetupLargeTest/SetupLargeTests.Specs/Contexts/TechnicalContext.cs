@@ -4,7 +4,7 @@ using Accounting.Specs.Contexts;
 using Ninject.Modules;
 using SetupLargeTests.Application;
 
-namespace Accounting.Tests.Contexts
+namespace SetupLargeTests.Specs.Contexts
 {
     public class TechnicalContext: Bootstrapper
     {
@@ -18,7 +18,7 @@ namespace Accounting.Tests.Contexts
             };
         }
 
-        public Application Application => StartApplication();
+        public Application.Application Application => StartApplication();
 
         protected override void ExtendModules(List<INinjectModule> modules)
         {

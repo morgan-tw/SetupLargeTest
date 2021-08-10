@@ -2,7 +2,7 @@ using Accounting.Domain;
 using Accounting.Specs.Contexts;
 using NUnit.Framework;
 
-namespace Accounting.Tests.Scenarios
+namespace SetupLargeTests.Specs.Scenarios
 {
     public partial class Scenario
     {
