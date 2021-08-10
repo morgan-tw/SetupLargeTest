@@ -38,9 +38,9 @@ namespace Accounting.Tests
         #endregion
 
         #region When
-        public Scenario WeAddTheMoneysUsing(string leftKey, string rightKey, ICurrencyConverter currencyConverter)
+        public Scenario WeAddTheMoneysUsing(string leftKey, string rightKey)
         {
-            result = items[leftKey].AddUsing(items[rightKey], currencyConverter);
+            result = items[leftKey].AddUsing(items[rightKey], currencyConverterMock.Object);
             return this;
         }
         #endregion

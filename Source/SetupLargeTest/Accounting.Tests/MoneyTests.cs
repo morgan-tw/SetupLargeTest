@@ -40,13 +40,11 @@ namespace Accounting.Tests
         [TestCase(3)]
         public void Sum_with_zero_should_not_change_amount(decimal amount)
         {
-            var scenario = Scenario.Create().
-                    Given.TheChangeRateFromToIs("BTH", "BTH", 1);
-            
-            scenario.
-                Given.AMoneyWithAmount("Zero", 0).
+            Scenario.Create().
+                Given.TheChangeRateFromToIs("BTH", "BTH", 1).
+                And.AMoneyWithAmount("Zero", 0).
                 And.AMoneyWithAmount("Money", amount).
-                When.WeAddTheMoneysUsing("Zero", "Money", scenario.currencyConverterMock.Object).
+                When.WeAddTheMoneysUsing("Zero", "Money").
                 Then.TheResultShouldBe(amount);
         }
         
