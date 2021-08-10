@@ -46,10 +46,5 @@ namespace Accounting.Tests
             items.Add(item);
             itemsPerKey.Add(key, item);
         }
-
-        public Money Get(string key)
-        {
-            return itemsPerKey[key];
-        }
     }
 }

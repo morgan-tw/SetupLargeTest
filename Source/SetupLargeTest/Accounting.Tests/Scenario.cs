@@ -83,7 +83,9 @@ namespace Accounting.Tests
         #region When
         public Scenario WeAddTheMoneys(string leftKey, string rightKey)
         {
-            result = moneyContext.Get(leftKey).AddUsing(moneyContext.Get(rightKey), currencyConverterMock.Object);
+            var leftMoney = moneyContext.EnsureTheMoneyExist(leftKey);
+            var rightMoney = moneyContext.EnsureTheMoneyExist(rightKey);
+            result = leftMoney.AddUsing(rightMoney, currencyConverterMock.Object);
             return this;
         }
         #endregion
