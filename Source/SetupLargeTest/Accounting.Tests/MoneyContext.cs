@@ -1,37 +1,39 @@
 using System.Collections.Generic;
+using System.Linq;
 using Accounting.Domain;
 
 namespace Accounting.Tests
 {
     public class MoneyContext
     {
-        private static readonly string DefaultKey = string.Empty;
-
-        private readonly Dictionary<string, Money> items;
+        private readonly List<Money> items;
+        private readonly Dictionary<string, Money> itemsPerKey;
 
         public MoneyContext()
         {
-            items = new Dictionary<string, Money>();
+            items = new List<Money>();
+            itemsPerKey = new Dictionary<string, Money>();
         }
 
         public void Add(Money item)
         {
-           Add(DefaultKey, item);
+           items.Add(item);
         }
         
         public void Add(string key, Money item)
         {
-            items.Add(key, item);
+            items.Add(item);
+            itemsPerKey.Add(key, item);
         }
 
         public Money Get()
         {
-            return Get(DefaultKey);
+            return items.First();
         }
 
         public Money Get(string key)
         {
-            return items[key];
+            return itemsPerKey[key];
         }
     }
 }
