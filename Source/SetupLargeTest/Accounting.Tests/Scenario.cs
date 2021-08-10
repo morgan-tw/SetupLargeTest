@@ -31,7 +31,7 @@ namespace Accounting.Tests
         #region Given
         public Scenario AMoneyWithAmount(string humanReadableKey, decimal amount, string currency = "BTH")
         {
-            moneyContext.items.Add(humanReadableKey, new Money(amount, currency));
+            moneyContext.Add(humanReadableKey, new Money(amount, currency));
             return this;
         }
         #endregion
@@ -39,7 +39,7 @@ namespace Accounting.Tests
         #region When
         public Scenario WeAddTheMoneys(string leftKey, string rightKey)
         {
-            result = moneyContext.items[leftKey].AddUsing(moneyContext.items[rightKey], currencyConverterMock.Object);
+            result = moneyContext.Get(leftKey).AddUsing(moneyContext.Get(rightKey), currencyConverterMock.Object);
             return this;
         }
         #endregion
@@ -47,7 +47,7 @@ namespace Accounting.Tests
         #region Then
         public Scenario ItsAmountShouldBe(string key,decimal expectedAmount)
         {
-            Assert.That(moneyContext.items[key].Amount, Is.EqualTo(expectedAmount));
+            Assert.That(moneyContext.Get(key).Amount, Is.EqualTo(expectedAmount));
             return this;
         }
 
