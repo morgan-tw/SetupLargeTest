@@ -1,3 +1,5 @@
+using Accounting.Domain;
+using Moq;
 using NUnit.Framework;
 
 namespace Accounting.Tests
@@ -26,7 +28,7 @@ namespace Accounting.Tests
         [TestCase(18)]
         [TestCase(19)]
         [TestCase(20)]
-        public void Should_set_amount(int amount)
+        public void Should_set_amount(decimal amount)
         {
             Scenario.Create().
                 Given.AMoneyWithAmount("My money", amount).
@@ -36,13 +38,33 @@ namespace Accounting.Tests
         [TestCase(1)]
         [TestCase(2)]
         [TestCase(3)]
-        public void Sum_with_zero_should_not_change_amount(int amount)
+        public void Sum_with_zero_should_not_change_amount(decimal amount)
         {
+            var currencyConverterMock = new Mock<ICurrencyConverter>();
+
+            currencyConverterMock.Setup(x => x.GetChangeRate("BTH", "BTH")).Returns(1);
+            
             Scenario.Create().
                 Given.AMoneyWithAmount("Zero", 0).
                 And.AMoneyWithAmount("Money", amount).
-                When.WeAddTheMoneys("Zero", "Money").
+                When.WeAddTheMoneysUsing("Zero", "Money", currencyConverterMock.Object).
                 Then.TheResultShouldBe(amount);
+        }
+        
+        [Test]
+        public void Sum_with_different_currency_should_apply_the_change_rate()
+        {
+            var currencyConverterMock = new Mock<ICurrencyConverter>();
+
+            currencyConverterMock.Setup(x => x.GetChangeRate("AUD", "BTH")).Returns(2);
+            
+            var tenBath = new Money(10, "BTH");
+            var tenDollars = new Money(10, "AUD");
+
+            var result = tenBath.AddUsing(tenDollars, currencyConverterMock.Object);
+            
+            Assert.That(result.Amount, Is.EqualTo(30));
+            Assert.That(result.Currency, Is.EqualTo("BTH"));
         }
     }
 }

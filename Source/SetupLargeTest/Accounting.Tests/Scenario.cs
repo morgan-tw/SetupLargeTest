@@ -26,7 +26,7 @@ namespace Accounting.Tests
         public Scenario But => this;
 
         #region Given
-        public Scenario AMoneyWithAmount(string humanReadableKey, int amount)
+        public Scenario AMoneyWithAmount(string humanReadableKey, decimal amount)
         {
             items.Add(humanReadableKey, new Money(amount));
             return this;
@@ -34,21 +34,21 @@ namespace Accounting.Tests
         #endregion
 
         #region When
-        public Scenario WeAddTheMoneys(string leftKey, string rightKey)
+        public Scenario WeAddTheMoneysUsing(string leftKey, string rightKey, ICurrencyConverter currencyConverter)
         {
-            result = items[leftKey] + items[rightKey];
+            result = items[leftKey].AddUsing(items[rightKey], currencyConverter);
             return this;
         }
         #endregion
 
         #region Then
-        public Scenario ItsAmountShouldBe(string key,int expectedAmount)
+        public Scenario ItsAmountShouldBe(string key,decimal expectedAmount)
         {
             Assert.That(items[key].Amount, Is.EqualTo(expectedAmount));
             return this;
         }
 
-        public Scenario TheResultShouldBe(int expectedAmount)
+        public Scenario TheResultShouldBe(decimal expectedAmount)
         {
             Assert.That(result.Amount, Is.EqualTo(expectedAmount));
             return this;
