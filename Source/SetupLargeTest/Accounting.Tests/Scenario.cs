@@ -41,10 +41,20 @@ namespace Accounting.Tests
             return this;
         }
 
-        public Scenario ThisMoneyHasForCurrency(string currency)
+        public Scenario AMoneyHasForCurrency(string currency)
         {
             moneyContext.EnsureAMoneyExist().Currency = currency;
             return this;
+        }
+
+        public Scenario ThisMoneyHasForCurrency(string currency)
+        {
+            return AMoneyHasForCurrency(currency);
+        }
+        
+        public Scenario ThisMoneyHasForAmount(decimal amount)
+        {
+            return AMoneyHasForAmount(amount);
         }
         
         public Scenario TheMoney(string humanReadableKey, decimal amount, string currency)
