@@ -67,7 +67,7 @@ namespace Accounting.Tests
         {
             var leftMoney = moneyContext.EnsureTheMoneyExist(leftKey);
             var rightMoney = moneyContext.EnsureTheMoneyExist(rightKey);
-            result = leftMoney.AddUsing(rightMoney, currencyConverterMock.Object);
+            result = leftMoney.AddUsing(rightMoney, technicalContext.CurrencyConverter);
             return this;
         }
         #endregion
