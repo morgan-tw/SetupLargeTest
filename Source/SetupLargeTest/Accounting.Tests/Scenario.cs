@@ -9,7 +9,7 @@ namespace Accounting.Tests
     {
         public readonly Mock<ICurrencyConverter> currencyConverterMock;
         
-        private readonly Dictionary<string, Money> items;
+        public readonly Dictionary<string, Money> items;
         private Money result;
 
         private Scenario()
@@ -30,9 +30,9 @@ namespace Accounting.Tests
         public Scenario But => this;
 
         #region Given
-        public Scenario AMoneyWithAmount(string humanReadableKey, decimal amount)
+        public Scenario AMoneyWithAmount(string humanReadableKey, decimal amount, string currency = "BTH")
         {
-            items.Add(humanReadableKey, new Money(amount));
+            items.Add(humanReadableKey, new Money(amount, currency));
             return this;
         }
         #endregion

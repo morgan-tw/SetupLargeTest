@@ -52,9 +52,9 @@ namespace Accounting.Tests
         public void Sum_with_different_currency_should_apply_the_change_rate()
         {
             var scenario = Scenario.Create().
-                Given.TheChangeRateFromToIs("AUD", "BTH", 2);
-            
-            var tenBath = new Money(10, "BTH");
+                Given.TheChangeRateFromToIs("AUD", "BTH", 2).
+                And.AMoneyWithAmount("tenBath", 10, "BTH");
+            var tenBath = scenario.items["tenBath"];
             var tenDollars = new Money(10, "AUD");
 
             var result = tenBath.AddUsing(tenDollars, scenario.currencyConverterMock.Object);
