@@ -1,4 +1,5 @@
 using Accounting.Domain;
+using Accounting.Specs.Contexts;
 using Accounting.Tests.Contexts;
 using NUnit.Framework;
 
