@@ -18,6 +18,7 @@
       <ProjectReference Include="..\Accounting.Domain\Accounting.Domain.csproj" />
       <ProjectReference Include="..\Accounting.Module\Accounting.Module.csproj" />
       <ProjectReference Include="..\Accounting.Specs\Accounting.Specs.csproj" />
+      <ProjectReference Include="..\SetupLargeTests.Application\SetupLargeTests.Application.csproj" />
     </ItemGroup>
 
 </Project>

@@ -1,5 +1,5 @@
 using Accounting.Domain;
-using Accounting.Tests.Contexts;
+using Accounting.Specs.Contexts;
 using Moq;
 
 namespace Accounting.Specs
@@ -18,9 +18,13 @@ namespace Accounting.Specs
         private void SetUpCurrencyConverter(ChangeRateContext changeRateContext)
         {            
             currencyConverterMock = new Mock<ICurrencyConverter>();
-            currencyConverter = currencyConverterMock.Object;
             currencyConverterMock.Setup(x => x.GetChangeRate(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns((string currencyFrom, string currencyTo) => changeRateContext.Get(currencyFrom, currencyTo));
+        }
+
+        public override void Load()
+        {
+            Rebind<ICurrencyConverter>().ToConstant(currencyConverterMock.Object).InSingletonScope();
         }
     }
 }

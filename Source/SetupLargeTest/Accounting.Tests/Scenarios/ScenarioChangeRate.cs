@@ -1,4 +1,4 @@
-using Accounting.Tests.Contexts;
+using Accounting.Specs.Contexts;
 
 namespace Accounting.Tests.Scenarios
 {
