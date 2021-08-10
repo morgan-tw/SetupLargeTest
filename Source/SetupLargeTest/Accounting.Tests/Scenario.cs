@@ -6,7 +6,7 @@ namespace Accounting.Tests
 {
     public class Scenario
     {
-        private List<Money> items;
+        public List<Money> items;
 
         private Scenario()
         {

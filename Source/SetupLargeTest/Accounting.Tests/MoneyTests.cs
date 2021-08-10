@@ -1,3 +1,4 @@
+using System.Linq;
 using Accounting.Domain;
 using NUnit.Framework;
 
@@ -39,10 +40,11 @@ namespace Accounting.Tests
         [TestCase(3)]
         public void Sum_with_zero_should_not_change_amount(int amount)
         {
-            var zero = new Money(0);
-            var money = new Money(amount);
+            var scenario = Scenario.Create().
+                Given.AMoneyWithAmount(0).
+                And.AMoneyWithAmount(amount);
 
-            var result = money + zero;
+            var result = scenario.items.ElementAt(0) + scenario.items.ElementAt(1);
             
             Assert.That(result.Amount, Is.EqualTo(amount));
         }
