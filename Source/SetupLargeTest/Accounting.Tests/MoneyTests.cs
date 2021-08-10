@@ -1,27 +1,18 @@
+using Accounting.Domain;
 using NUnit.Framework;
 
-namespace Tests
+namespace Accounting.Tests
 {
-    public class AClass
-    {
-        public int value { get; set; }
-
-        public AClass(int value)
-        {
-            this.value = value;
-        }
-    }
-
     [TestFixture]
     [Parallelizable(scope: ParallelScope.All)]
-    public class TTest
+    public class MoneyTests
     {
-        private AClass testable;
+        private Money testable;
 
         [SetUp]
         public void Setup()
         {
-            testable = new AClass(0);
+            testable = new Money(0, "BTH");
         }
 
         [TestCase(1)]
@@ -42,10 +33,12 @@ namespace Tests
         [TestCase(16)]
         [TestCase(17)]
         [TestCase(18)]
-        public void ShouldBeSameNumber0(int number)
+        [TestCase(19)]
+        [TestCase(20)]
+        public void ShouldSetAmount(int amount)
         {
-            testable.value = number;
-            Assert.That(testable.value, Is.EqualTo(number));
+            testable.Amount = amount;
+            Assert.That(testable.Amount, Is.EqualTo(amount));
         }
 
         [TestCase(1)]
@@ -66,10 +59,12 @@ namespace Tests
         [TestCase(16)]
         [TestCase(17)]
         [TestCase(18)]
-        public void ShouldBeSameNumber1(int number)
+        [TestCase(19)]
+        [TestCase(20)]
+        public void ShouldSetAmount2(int number)
         {
-            testable.value = number;
-            Assert.That(testable.value, Is.EqualTo(number));
+            testable.Amount = number;
+            Assert.That(testable.Amount, Is.EqualTo(number));
         }
 
         [TestCase(1)]
@@ -90,10 +85,12 @@ namespace Tests
         [TestCase(16)]
         [TestCase(17)]
         [TestCase(18)]
-        public void ShouldBeSameNumber2(int number)
+        [TestCase(19)]
+        [TestCase(20)]
+        public void ShouldSetAmount3(int number)
         {
-            testable.value = number;
-            Assert.That(testable.value, Is.EqualTo(number));
+            testable.Amount = number;
+            Assert.That(testable.Amount, Is.EqualTo(number));
         }
     }
 }
