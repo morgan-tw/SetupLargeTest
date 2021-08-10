@@ -29,6 +29,7 @@ namespace Accounting.Tests
         [TestCase(20)]
         public void ShouldSetAmount(int amount)
         {
+            var scenario = new Scenario();
             var testable = new Money(amount);
             Assert.That(testable.Amount, Is.EqualTo(amount));
         }
