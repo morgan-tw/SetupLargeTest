@@ -1,4 +1,4 @@
-using Accounting.Tests.Fakes;
+using Accounting.Specs;
 
 namespace Accounting.Tests.Contexts
 {

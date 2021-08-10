@@ -2,7 +2,7 @@ using Accounting.Domain;
 using Accounting.Tests.Contexts;
 using Moq;
 
-namespace Accounting.Tests.Fakes
+namespace Accounting.Specs
 {
     public class ModuleAccountingFake: ModuleAccounting
     {
