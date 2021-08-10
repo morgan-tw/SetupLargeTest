@@ -5,7 +5,7 @@ namespace Accounting.Tests
 {
     public class TechnicalContext
     {
-        public readonly Mock<ICurrencyConverter> currencyConverterMock;
+        private readonly Mock<ICurrencyConverter> currencyConverterMock;
 
         public TechnicalContext()
         {
@@ -13,5 +13,10 @@ namespace Accounting.Tests
         }
 
         public ICurrencyConverter CurrencyConverter => currencyConverterMock.Object;
+        
+        public void TheChangeRateFromToIs(string currencyFrom, string currencyTo, decimal changeRate)
+        {
+            currencyConverterMock.Setup(x => x.GetChangeRate(currencyFrom, currencyTo)).Returns(changeRate);
+        }
     }
 }

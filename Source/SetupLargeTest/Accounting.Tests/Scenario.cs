@@ -24,7 +24,7 @@ namespace Accounting.Tests
         #region Given
         public Scenario TheChangeRateFromToIs(string currencyFrom, string currencyTo, decimal changeRate)
         {
-            technicalContext.currencyConverterMock.Setup(x => x.GetChangeRate(currencyFrom, currencyTo)).Returns(changeRate);
+            technicalContext.TheChangeRateFromToIs(currencyFrom, currencyTo, changeRate);
             return this;
         }
         #endregion
