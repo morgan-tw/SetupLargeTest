@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Accounting.Domain;
-using Castle.Core.Internal;
 
-namespace Accounting.Tests.Contexts
+namespace Accounting.Specs.Contexts
 {
     public class MoneyContext
     {
@@ -18,7 +17,7 @@ namespace Accounting.Tests.Contexts
 
         public Money EnsureAMoneyExist()
         {
-            if (items.IsNullOrEmpty())
+            if (items.Count == 0)
             {
                 Add(MoneyFactory.CreateDefaultMoney());
             }
