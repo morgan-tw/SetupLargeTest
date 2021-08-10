@@ -6,8 +6,6 @@ namespace Accounting.Tests.Scenarios
     {
         private readonly TechnicalContext technicalContext;
 
-        private readonly ChangeRateContext changeRateContext;
-
         private Scenario()
         {
             moneyContext = new MoneyContext();
@@ -26,13 +24,5 @@ namespace Accounting.Tests.Scenarios
         public Scenario Then => this;
         public Scenario And => this;
         public Scenario But => this;
-
-        #region Given
-        public Scenario TheChangeRateFromToIs(string currencyFrom, string currencyTo, decimal changeRate)
-        {
-            changeRateContext.Add(currencyFrom, currencyTo, changeRate);
-            return this;
-        }
-        #endregion
     }
 }
