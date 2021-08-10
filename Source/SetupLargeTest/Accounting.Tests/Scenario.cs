@@ -37,13 +37,13 @@ namespace Accounting.Tests
 
         public Scenario AMoneyHasForAmount(decimal amount)
         {
-            moneyContext.Add(new Money(amount, "BTH"));
+            moneyContext.EnsureAMoneyExist().Amount = amount;
             return this;
         }
 
         public Scenario ThisMoneyHasForCurrency(string currency)
         {
-            moneyContext.Get().Currency = currency;
+            moneyContext.EnsureAMoneyExist().Currency = currency;
             return this;
         }
         

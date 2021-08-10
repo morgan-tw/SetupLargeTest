@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Accounting.Domain;
+using Castle.Core.Internal;
 
 namespace Accounting.Tests
 {
@@ -13,6 +14,16 @@ namespace Accounting.Tests
         {
             items = new List<Money>();
             itemsPerKey = new Dictionary<string, Money>();
+        }
+
+        public Money EnsureAMoneyExist()
+        {
+            if (items.IsNullOrEmpty())
+            {
+                Add(new Money(0, "BTH"));
+            }
+
+            return items.First();
         }
 
         public void Add(Money item)
