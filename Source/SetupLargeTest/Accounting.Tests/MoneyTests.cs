@@ -44,21 +44,19 @@ namespace Accounting.Tests
                 Given.TheChangeRateFromToIs("BTH", "BTH", 1).
                 And.AMoneyWithAmount("Zero", 0).
                 And.AMoneyWithAmount("Money", amount).
-                When.WeAddTheMoneysUsing("Zero", "Money").
-                Then.TheResultShouldBe(amount);
+                When.WeAddTheMoneys("Zero", "Money").
+                Then.TheResultShouldBe(amount, "BTH");
         }
         
         [Test]
-        public void Sum_with_different_currency_should_apply_the_change_rate()
+        public void Sum_with_different_currencies_should_apply_the_change_rate()
         {
-            var scenario = Scenario.Create().
+            Scenario.Create().
                 Given.TheChangeRateFromToIs("AUD", "BTH", 2).
                 And.AMoneyWithAmount("tenBath", 10, "BTH").
                 And.AMoneyWithAmount("tenDollars", 10, "AUD").
-                When.WeAddTheMoneysUsing("tenBath", "tenDollars").
-                Then.TheResultShouldBe(30);
-            
-            Assert.That(scenario.result.Currency, Is.EqualTo("BTH"));
+                When.WeAddTheMoneys("tenBath", "tenDollars").
+                Then.TheResultShouldBe(30, "BTH");
         }
     }
 }

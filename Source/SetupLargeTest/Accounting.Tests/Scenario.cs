@@ -10,7 +10,7 @@ namespace Accounting.Tests
         private readonly Mock<ICurrencyConverter> currencyConverterMock;
         
         private readonly Dictionary<string, Money> items;
-        public Money result;
+        private Money result;
 
         private Scenario()
         {
@@ -38,7 +38,7 @@ namespace Accounting.Tests
         #endregion
 
         #region When
-        public Scenario WeAddTheMoneysUsing(string leftKey, string rightKey)
+        public Scenario WeAddTheMoneys(string leftKey, string rightKey)
         {
             result = items[leftKey].AddUsing(items[rightKey], currencyConverterMock.Object);
             return this;
@@ -52,17 +52,18 @@ namespace Accounting.Tests
             return this;
         }
 
-        public Scenario TheResultShouldBe(decimal expectedAmount)
+        public Scenario TheResultShouldBe(decimal expectedAmount, string expectedCurrency)
         {
             Assert.That(result.Amount, Is.EqualTo(expectedAmount));
+            Assert.That(result.Currency, Is.EqualTo(expectedCurrency));
             return this;
         }
-        #endregion
 
         public Scenario TheChangeRateFromToIs(string currencyFrom, string currencyTo, decimal changeRate)
         {
             currencyConverterMock.Setup(x => x.GetChangeRate(currencyFrom, currencyTo)).Returns(changeRate);
             return this;
         }
+        #endregion
     }
 }
