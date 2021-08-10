@@ -43,9 +43,8 @@ namespace Accounting.Tests
             var scenario = Scenario.Create().
                 Given.AMoneyWithAmount(0).
                 And.AMoneyWithAmount(amount).
-                When.WeAddTheMoneys(0, 1);
-            
-            Assert.That(scenario.result.Amount, Is.EqualTo(amount));
+                When.WeAddTheMoneys(0, 1).
+                Then.TheResultShouldBe(amount);
         }
     }
 }

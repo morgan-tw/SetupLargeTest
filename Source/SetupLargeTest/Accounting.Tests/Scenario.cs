@@ -43,5 +43,11 @@ namespace Accounting.Tests
             result = items.ElementAt(leftMoneyIndex) + items.ElementAt(rightMoneyIndex);
             return this;
         }
+
+        public Scenario TheResultShouldBe(int expectedAmount)
+        {
+            Assert.That(result.Amount, Is.EqualTo(expectedAmount));
+            return this;
+        }
     }
 }
