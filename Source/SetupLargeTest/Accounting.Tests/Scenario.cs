@@ -1,4 +1,5 @@
 using Accounting.Domain;
+using NUnit.Framework;
 
 namespace Accounting.Tests
 {
@@ -15,6 +16,12 @@ namespace Accounting.Tests
         public Scenario AMoneyWithAmount(int amount)
         {
             testable = new Money(amount);
+            return this;
+        }
+
+        public Scenario ItsAmountShouldBe(int expectedAmount)
+        {
+            Assert.That(testable.Amount, Is.EqualTo(expectedAmount));
             return this;
         }
     }

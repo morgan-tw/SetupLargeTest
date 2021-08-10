@@ -1,4 +1,3 @@
-using Accounting.Domain;
 using NUnit.Framework;
 
 namespace Accounting.Tests
@@ -29,9 +28,9 @@ namespace Accounting.Tests
         [TestCase(20)]
         public void ShouldSetAmount(int amount)
         {
-            var scenario = new Scenario().
-                Given.AMoneyWithAmount(amount);
-            Assert.That(scenario.testable.Amount, Is.EqualTo(amount));
+            new Scenario().
+                Given.AMoneyWithAmount(amount).
+                Then.ItsAmountShouldBe(amount);
         }
     }
 }
