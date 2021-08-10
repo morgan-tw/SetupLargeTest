@@ -1,6 +1,7 @@
+using Accounting.Tests.Scenarios;
 using NUnit.Framework;
 
-namespace Accounting.Tests
+namespace Accounting.Tests.Features
 {
     [TestFixture]
     [Parallelizable(scope: ParallelScope.All)]

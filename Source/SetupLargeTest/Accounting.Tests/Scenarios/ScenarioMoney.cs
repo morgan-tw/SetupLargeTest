@@ -1,7 +1,8 @@
 using Accounting.Domain;
+using Accounting.Tests.Contexts;
 using NUnit.Framework;
 
-namespace Accounting.Tests
+namespace Accounting.Tests.Scenarios
 {
     public partial class Scenario
     {
@@ -67,7 +68,7 @@ namespace Accounting.Tests
         {
             var leftMoney = moneyContext.EnsureTheMoneyExist(leftKey);
             var rightMoney = moneyContext.EnsureTheMoneyExist(rightKey);
-            result = leftMoney.AddUsing(rightMoney, currencyConverterMock.Object);
+            result = leftMoney.AddUsing(rightMoney, technicalContext.CurrencyConverter);
             return this;
         }
         #endregion
