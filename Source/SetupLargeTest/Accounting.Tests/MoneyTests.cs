@@ -42,8 +42,9 @@ namespace Accounting.Tests
         {
             Scenario.Create().
                 Given.TheChangeRateFromToIs("BTH", "BTH", 1).
-                And.TheMoney("Zero", 0, "BTH").
+                And.TheMoneyHasForAmount("Zero", 0).
                 And.TheMoney("Money", amount, "BTH").
+                And.TheMoneyHasForCurrency("Zero", "BTH").
                 When.WeAddTheMoneys("Zero", "Money").
                 Then.TheResultShouldBe(amount, "BTH");
         }

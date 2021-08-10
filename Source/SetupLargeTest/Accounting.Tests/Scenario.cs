@@ -64,6 +64,20 @@ namespace Accounting.Tests
             money.Currency = currency;
             return this;
         }
+        
+        public Scenario TheMoneyHasForAmount(string humanReadableKey, decimal amount)
+        {
+            var money = moneyContext.EnsureTheMoneyExist(humanReadableKey);
+            money.Amount = amount;
+            return this;
+        }
+        
+        public Scenario TheMoneyHasForCurrency(string humanReadableKey, string currency)
+        {
+            var money = moneyContext.EnsureTheMoneyExist(humanReadableKey);
+            money.Currency = currency;
+            return this;
+        }
         #endregion
 
         #region When
