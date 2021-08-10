@@ -31,7 +31,7 @@ namespace Accounting.Tests
         public void Should_set_amount(decimal amount)
         {
             Scenario.Create().
-                Given.AMoneyWithAmount(amount).
+                Given.AMoney(amount, "BTH").
                 Then.ItsAmountShouldBe(amount);
         }
         
@@ -42,8 +42,8 @@ namespace Accounting.Tests
         {
             Scenario.Create().
                 Given.TheChangeRateFromToIs("BTH", "BTH", 1).
-                And.AMoneyWithAmount("Zero", 0).
-                And.AMoneyWithAmount("Money", amount).
+                And.TheMoney("Zero", 0, "BTH").
+                And.TheMoney("Money", amount, "BTH").
                 When.WeAddTheMoneys("Zero", "Money").
                 Then.TheResultShouldBe(amount, "BTH");
         }
@@ -53,8 +53,8 @@ namespace Accounting.Tests
         {
             Scenario.Create().
                 Given.TheChangeRateFromToIs("AUD", "BTH", 2).
-                And.AMoneyWithAmount("tenBath", 10, "BTH").
-                And.AMoneyWithAmount("tenDollars", 10, "AUD").
+                And.TheMoney("tenBath", 10, "BTH").
+                And.TheMoney("tenDollars", 10, "AUD").
                 When.WeAddTheMoneys("tenBath", "tenDollars").
                 Then.TheResultShouldBe(30, "BTH");
         }

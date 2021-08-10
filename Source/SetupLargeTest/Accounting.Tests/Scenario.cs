@@ -29,13 +29,13 @@ namespace Accounting.Tests
         public Scenario But => this;
 
         #region Given
-        public Scenario AMoneyWithAmount(decimal amount, string currency = "BTH")
+        public Scenario AMoney(decimal amount, string currency)
         {
             moneyContext.Add(new Money(amount, currency));
             return this;
         }
         
-        public Scenario AMoneyWithAmount(string humanReadableKey, decimal amount, string currency = "BTH")
+        public Scenario TheMoney(string humanReadableKey, decimal amount, string currency)
         {
             moneyContext.Add(humanReadableKey, new Money(amount, currency));
             return this;
