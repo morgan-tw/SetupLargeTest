@@ -1,5 +1,3 @@
-using Accounting.Domain;
-using Moq;
 using NUnit.Framework;
 
 namespace Accounting.Tests
@@ -31,8 +29,10 @@ namespace Accounting.Tests
         public void Should_set_amount(decimal amount)
         {
             Scenario.Create().
-                Given.AMoneyWithAmount("My money", amount).
-                Then.ItsAmountShouldBe("My money", amount);
+                Given.AMoneyHasForCurrency("BTH").
+                And.ThisMoneyHasForAmount(amount).
+                Then.ItsAmountShouldBe(amount).
+                And.ItsCurrencyShouldBe("BTH");
         }
         
         [TestCase(1)]
@@ -42,8 +42,9 @@ namespace Accounting.Tests
         {
             Scenario.Create().
                 Given.TheChangeRateFromToIs("BTH", "BTH", 1).
-                And.AMoneyWithAmount("Zero", 0).
-                And.AMoneyWithAmount("Money", amount).
+                And.TheMoneyHasForAmount("Zero", 0).
+                And.TheMoney("Money", amount, "BTH").
+                And.TheMoneyHasForCurrency("Zero", "BTH").
                 When.WeAddTheMoneys("Zero", "Money").
                 Then.TheResultShouldBe(amount, "BTH");
         }
@@ -53,8 +54,8 @@ namespace Accounting.Tests
         {
             Scenario.Create().
                 Given.TheChangeRateFromToIs("AUD", "BTH", 2).
-                And.AMoneyWithAmount("tenBath", 10, "BTH").
-                And.AMoneyWithAmount("tenDollars", 10, "AUD").
+                And.TheMoney("tenBath", 10, "BTH").
+                And.TheMoney("tenDollars", 10, "AUD").
                 When.WeAddTheMoneys("tenBath", "tenDollars").
                 Then.TheResultShouldBe(30, "BTH");
         }
