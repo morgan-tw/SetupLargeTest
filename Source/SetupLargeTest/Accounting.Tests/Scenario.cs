@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Accounting.Domain;
 using NUnit.Framework;
 
@@ -7,6 +8,7 @@ namespace Accounting.Tests
     public class Scenario
     {
         public List<Money> items;
+        public Money result;
 
         private Scenario()
         {
@@ -33,6 +35,12 @@ namespace Accounting.Tests
         public Scenario ItsAmountShouldBe(int expectedAmount)
         {
             Assert.That(items[0].Amount, Is.EqualTo(expectedAmount));
+            return this;
+        }
+
+        public Scenario WeAddTheMoneys(int leftMoneyIndex, int rightMoneyIndex)
+        {
+            result = items.ElementAt(leftMoneyIndex) + items.ElementAt(rightMoneyIndex);
             return this;
         }
     }

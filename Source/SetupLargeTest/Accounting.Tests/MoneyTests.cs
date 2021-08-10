@@ -42,11 +42,10 @@ namespace Accounting.Tests
         {
             var scenario = Scenario.Create().
                 Given.AMoneyWithAmount(0).
-                And.AMoneyWithAmount(amount);
-
-            var result = scenario.items.ElementAt(0) + scenario.items.ElementAt(1);
+                And.AMoneyWithAmount(amount).
+                When.WeAddTheMoneys(0, 1);
             
-            Assert.That(result.Amount, Is.EqualTo(amount));
+            Assert.That(scenario.result.Amount, Is.EqualTo(amount));
         }
     }
 }
