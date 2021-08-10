@@ -7,10 +7,10 @@ namespace Accounting.Tests
 {
     public class Scenario
     {
-        public readonly Mock<ICurrencyConverter> currencyConverterMock;
+        private readonly Mock<ICurrencyConverter> currencyConverterMock;
         
-        public readonly Dictionary<string, Money> items;
-        private Money result;
+        private readonly Dictionary<string, Money> items;
+        public Money result;
 
         private Scenario()
         {
