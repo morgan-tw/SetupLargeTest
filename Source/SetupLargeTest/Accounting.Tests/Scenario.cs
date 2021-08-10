@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Accounting.Domain;
 using Moq;
 using NUnit.Framework;
@@ -8,13 +7,13 @@ namespace Accounting.Tests
     public class Scenario
     {
         private readonly Mock<ICurrencyConverter> currencyConverterMock;
-        
-        private readonly Dictionary<string, Money> items;
+
+        private MoneyContext moneyContext; 
         private Money result;
 
         private Scenario()
         {
-            items = new Dictionary<string, Money>();
+            moneyContext = new MoneyContext();
             currencyConverterMock = new Mock<ICurrencyConverter>();
         }
 
@@ -32,7 +31,7 @@ namespace Accounting.Tests
         #region Given
         public Scenario AMoneyWithAmount(string humanReadableKey, decimal amount, string currency = "BTH")
         {
-            items.Add(humanReadableKey, new Money(amount, currency));
+            moneyContext.items.Add(humanReadableKey, new Money(amount, currency));
             return this;
         }
         #endregion
@@ -40,7 +39,7 @@ namespace Accounting.Tests
         #region When
         public Scenario WeAddTheMoneys(string leftKey, string rightKey)
         {
-            result = items[leftKey].AddUsing(items[rightKey], currencyConverterMock.Object);
+            result = moneyContext.items[leftKey].AddUsing(moneyContext.items[rightKey], currencyConverterMock.Object);
             return this;
         }
         #endregion
@@ -48,7 +47,7 @@ namespace Accounting.Tests
         #region Then
         public Scenario ItsAmountShouldBe(string key,decimal expectedAmount)
         {
-            Assert.That(items[key].Amount, Is.EqualTo(expectedAmount));
+            Assert.That(moneyContext.items[key].Amount, Is.EqualTo(expectedAmount));
             return this;
         }
 
