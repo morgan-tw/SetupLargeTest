@@ -68,7 +68,7 @@ namespace Accounting.Tests.Scenarios
         {
             var leftMoney = moneyContext.EnsureTheMoneyExist(leftKey);
             var rightMoney = moneyContext.EnsureTheMoneyExist(rightKey);
-            result = leftMoney.AddUsing(rightMoney, technicalContext.CurrencyConverter);
+            result = technicalContext.ModuleAccounting.Add(leftMoney, rightMoney);
             return this;
         }
         #endregion
@@ -92,8 +92,6 @@ namespace Accounting.Tests.Scenarios
             Assert.That(result.Currency, Is.EqualTo(expectedCurrency));
             return this;
         }
-
-        
         #endregion
     }
 }

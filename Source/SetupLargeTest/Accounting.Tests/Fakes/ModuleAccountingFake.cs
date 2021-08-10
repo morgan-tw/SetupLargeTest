@@ -21,6 +21,11 @@ namespace Accounting.Tests.Fakes
             currencyConverterMock.Setup(x => x.GetChangeRate(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns((string currencyFrom, string currencyTo) => changeRateContext.Get(currencyFrom, currencyTo));
         }
+
+        public Money Add(Money leftMoney, Money rightMoney)
+        {
+            return leftMoney.AddUsing(rightMoney, currencyConverterMock.Object);
+        }
     }
 
 }
