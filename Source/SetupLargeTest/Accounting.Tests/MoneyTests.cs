@@ -1,3 +1,4 @@
+using Accounting.Domain;
 using NUnit.Framework;
 
 namespace Accounting.Tests
@@ -26,11 +27,24 @@ namespace Accounting.Tests
         [TestCase(18)]
         [TestCase(19)]
         [TestCase(20)]
-        public void ShouldSetAmount(int amount)
+        public void Should_set_amount(int amount)
         {
             Scenario.Create().
                 Given.AMoneyWithAmount(amount).
                 Then.ItsAmountShouldBe(amount);
+        }
+        
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        public void Sum_with_zero_should_not_change_amount(int amount)
+        {
+            var zero = new Money(0);
+            var money = new Money(amount);
+
+            var result = money + zero;
+            
+            Assert.That(result.Amount, Is.EqualTo(amount));
         }
     }
 }
