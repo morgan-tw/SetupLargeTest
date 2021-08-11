@@ -1,7 +1,7 @@
-using Accounting.Tests.Scenarios;
 using NUnit.Framework;
+using SetupLargeTests.Specs.Scenarios;
 
-namespace Accounting.Tests.Features
+namespace SetupLargeTests.Specs.Features
 {
     [TestFixture]
     [Parallelizable(scope: ParallelScope.All)]

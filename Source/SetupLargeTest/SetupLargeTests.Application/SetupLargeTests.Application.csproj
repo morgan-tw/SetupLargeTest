@@ -2,11 +2,11 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
-        <RootNamespace>Accounting</RootNamespace>
+        <OutputType>Exe</OutputType>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Accounting.Domain\Accounting.Domain.csproj" />
+      <ProjectReference Include="..\Accounting.Module\Accounting.Module.csproj" />
     </ItemGroup>
 
     <ItemGroup>

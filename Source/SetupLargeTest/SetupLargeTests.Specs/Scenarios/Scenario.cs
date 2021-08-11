@@ -1,7 +1,7 @@
 using Accounting.Specs.Contexts;
-using Accounting.Tests.Contexts;
+using SetupLargeTests.Specs.Contexts;
 
-namespace Accounting.Tests.Scenarios
+namespace SetupLargeTests.Specs.Scenarios
 {
     public partial class Scenario
     {

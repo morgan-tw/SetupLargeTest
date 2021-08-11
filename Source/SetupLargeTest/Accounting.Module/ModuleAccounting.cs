@@ -1,12 +1,20 @@
-namespace Accounting.Domain
+using Accounting.Domain;
+using Ninject.Modules;
+
+namespace Accounting
 {
-    public class ModuleAccounting
+    public class ModuleAccounting: NinjectModule
     {
-        protected ICurrencyConverter currencyConverter;
-        
-        public Money Add(Money leftMoney, Money rightMoney)
+        public override void Load()
         {
-            return leftMoney.AddUsing(rightMoney, currencyConverter);
+            Bind<ICurrencyConverter>().To<HardCodedCurrencyConverter>().InSingletonScope();
+            Bind<AccountingService>().ToSelf().InSingletonScope();
+
+            LoadExtensions();
+        }
+
+        protected virtual void LoadExtensions()
+        {
         }
     }
 }

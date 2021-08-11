@@ -2,7 +2,7 @@ using Accounting.Domain;
 using Accounting.Specs.Contexts;
 using NUnit.Framework;
 
-namespace Accounting.Tests.Scenarios
+namespace SetupLargeTests.Specs.Scenarios
 {
     public partial class Scenario
     {
@@ -68,7 +68,7 @@ namespace Accounting.Tests.Scenarios
         {
             var leftMoney = moneyContext.EnsureTheMoneyExist(leftKey);
             var rightMoney = moneyContext.EnsureTheMoneyExist(rightKey);
-            result = technicalContext.ModuleAccounting.Add(leftMoney, rightMoney);
+            result = technicalContext.Application.SumMoneys(leftMoney, rightMoney);
             return this;
         }
         #endregion

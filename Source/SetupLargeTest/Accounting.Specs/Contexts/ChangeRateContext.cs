@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Accounting.Tests.Contexts
+namespace Accounting.Specs.Contexts
 {
     public class ChangeRateContext
     {

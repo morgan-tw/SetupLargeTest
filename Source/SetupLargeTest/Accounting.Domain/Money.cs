@@ -18,5 +18,10 @@ namespace Accounting.Domain
             var money = new Money(Amount + other.Amount * changeRate, Currency);
             return money;
         }
+
+        public override string ToString()
+        {
+            return $"{Currency} {Amount}";
+        }
     }
 }
